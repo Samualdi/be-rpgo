@@ -1,6 +1,5 @@
 [
     {
-        _id: "6180091aee590cb08631546b",
         username: "Jayne Doe",
         password: "Password1",
         sprite: "temp.png",
@@ -13,7 +12,6 @@
         current_challenge: {},
     },
     {
-        _id: "618009a89ec158b2152bf1ac",
         username: "Mitch Jones",
         password: "Password1",
         sprite: "temp.png",
@@ -26,7 +24,6 @@
         current_challenge: {},
     },
     {
-        _id: "61800a7da570c3026eae4b62",
         username: "Shaggy Rogers",
         password: "Password1",
         sprite: "temp.png",
@@ -39,7 +36,6 @@
         current_challenge: {},
     },
     {
-        _id: "61800abfa570c3026eae4b63",
         username: "Velma Dinkley",
         password: "Password1",
         sprite: "temp.png",
@@ -52,7 +48,6 @@
         current_challenge: {},
     },
     {
-        _id: "61800b05a570c3026eae4b64",
         username: "Marvin Martian",
         password: "Password1",
         sprite: "temp.png",
