@@ -1,4 +1,4 @@
-[
+const testChallenges = [
     {
         title: "Run From the Dragon",
         description:
@@ -43,3 +43,5 @@
         activity_value: 1000,
     },
 ];
+
+module.exports = testChallenges;
