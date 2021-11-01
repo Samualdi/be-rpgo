@@ -2,6 +2,7 @@ const MongoClient = require("mongodb").MongoClient;
 const express = require("express");
 
 const app = express();
+app.use(express.json());
 
 MongoClient.connect(
     "mongodb+srv://gitpushgitpaid:gpgp2021@cluster0.j8dax.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
@@ -10,12 +11,17 @@ MongoClient.connect(
     const db = client.db("RPGo-DB");
     const usersCollection = db.collection("users");
     app.post("/users", (req, res) => {
-        usersCollection.insertOne({ username: "John Smith" }).then((res) => {
-            console.log(res);
-        });
+        // console.log(req);
+        usersCollection
+            .insertOne(req.body)
+            .then((response) => {
+                console.log("sucess");
+                res.status(201).send({ message: "Added User" });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     });
-
-    app.use(express.json());
 
     app.get("/users", (req, res) => {
         db.collection("users")
