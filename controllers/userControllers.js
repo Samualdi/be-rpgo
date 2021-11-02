@@ -1,7 +1,7 @@
 exports.getUsers = async (req, res, next) => {
     try {
         // Function Goes Here
-        res.status(200).send();
+        res.status(200).send("Hello");
     } catch (error) {
         next(error);
     }
