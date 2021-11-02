@@ -73,22 +73,9 @@ async function seedChallenges() {
     }
 }
 
-// const activitiesCollection = client.db("RPGo-DB").collection("activities");
-// activitiesCollection.drop();
-
-// await activitiesCollection.insertMany(testActivities);
-// console.log("Activities seeded! :)");
-
-// const challengesCollection = client
-//     .db("RPGo-DB")
-//     .collection("challenges");
-// challengesCollection.drop();
-
-// await challengesCollection.insertMany(testChallenges);
-// console.log("Activities seeded! :)");
-
-// client.close();
-
 seedUsers();
 seedActivities();
 seedChallenges();
+
+
+module.exports = { seedUsers, seedChallenges, seedActivities };
