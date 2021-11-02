@@ -1,26 +1,32 @@
-const MongoClient = require("mongodb").MongoClient;
+//const MongoClient = require("mongodb").MongoClient;
+const mongoose = require('mongoose');
 const express = require("express");
 const apiRouter = require("./routers/apiRouter");
 const { getNoPathMessage } = require("./controllers/miscControllers");
 const { handleCustomErrors, handleServerErrors } = require("./errors/index");
 
+require('dotenv').config()
+
+
 const app = express();
-app.use(express.json());
 
-MongoClient.connect(
-    "mongodb+srv://gitpushgitpaid:gpgp2021@cluster0.j8dax.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-).then((client) => {
-    console.log("DB Connected");
-    const db = client.db("RPGo-DB");
-    const usersCollection = db.collection("users");
+app.use(express.urlencoded({ extended: false }));
 
-    app.use("/api", apiRouter);
 
-    app.all("*", getNoPathMessage);
+        app.use("/api", apiRouter);
 
-    app.listen(3500, () => {
-        console.log("app listening on 3500");
-    });
-});
+
+        app.all("*", getNoPathMessage);
+
+        mongoose.connect(process.env.SERVER, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+
+        app.listen(process.env.PORT || 3500, () => {
+            console.log("app listening on 3500");
+        });
 
 module.exports = app;
+
+

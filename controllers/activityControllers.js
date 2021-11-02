@@ -1,7 +1,9 @@
+const { fetchActivities } = require('../models/activity-models.js');
+
 exports.getActivities = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(200).send();
+        const activities = await fetchActivities()
+        res.status(200).send({activities: activities});
     } catch (error) {
         next(error);
     }
