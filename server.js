@@ -14,7 +14,7 @@ MongoClient.connect(
     const db = client.db("RPGo-DB");
     const usersCollection = db.collection("users");
 
-    app.use("api/", apiRouter);
+    app.use("/api", apiRouter);
 
     app.all("*", getNoPathMessage);
 
