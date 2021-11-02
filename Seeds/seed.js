@@ -1,8 +1,7 @@
-
 const MongoClient = require("mongodb").MongoClient;
-const testUsers = require('../data/testUsers');
-const testActivities = require('../data/test-activities');
-const testChallenges = require('../data/test-challenges');
+const testUsers = require("../data/test-users");
+const testActivities = require("../data/test-activities");
+const testChallenges = require("../data/test-challenges");
 
 async function seedUsers() {
     const uri =
@@ -14,17 +13,14 @@ async function seedUsers() {
     try {
         await client.connect();
         console.log("Connected correctly to server");
-        const userCollection = client
-            .db("RPGo-DB")
-            .collection("users");
+        const userCollection = client.db("RPGo-DB").collection("users");
         userCollection.drop();
-        
+
         await userCollection.insertMany(testUsers);
         console.log("Users seeded! :)");
 
         client.close();
-
-        } catch (err) {
+    } catch (err) {
         console.log(err.stack);
     }
 }
@@ -39,7 +35,9 @@ async function seedActivities() {
     try {
         await client.connect();
         console.log("Connected correctly to server");
-        const activitiesCollection = client.db("RPGo-DB").collection("activities");
+        const activitiesCollection = client
+            .db("RPGo-DB")
+            .collection("activities");
         activitiesCollection.drop();
 
         await activitiesCollection.insertMany(testActivities);
@@ -74,27 +72,23 @@ async function seedChallenges() {
         console.log(err.stack);
     }
 }
-        
 
+// const activitiesCollection = client.db("RPGo-DB").collection("activities");
+// activitiesCollection.drop();
 
+// await activitiesCollection.insertMany(testActivities);
+// console.log("Activities seeded! :)");
 
-        // const activitiesCollection = client.db("RPGo-DB").collection("activities");
-        // activitiesCollection.drop();
+// const challengesCollection = client
+//     .db("RPGo-DB")
+//     .collection("challenges");
+// challengesCollection.drop();
 
-        // await activitiesCollection.insertMany(testActivities);
-        // console.log("Activities seeded! :)");
+// await challengesCollection.insertMany(testChallenges);
+// console.log("Activities seeded! :)");
 
-        // const challengesCollection = client
-        //     .db("RPGo-DB")
-        //     .collection("challenges");
-        // challengesCollection.drop();
+// client.close();
 
-        // await challengesCollection.insertMany(testChallenges);
-        // console.log("Activities seeded! :)");
-
-
-        // client.close();
-   
 seedUsers();
 seedActivities();
 seedChallenges();
