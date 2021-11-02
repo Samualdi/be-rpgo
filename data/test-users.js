@@ -1,4 +1,4 @@
-[
+const testUsers = [
     {
         username: "Jayne Doe",
         password: "Password1",
@@ -53,10 +53,11 @@
         sprite: "temp.png",
         xp: 1600,
         trophies: [],
-        bio: "Marvin Martian Bio",
+        bio: "Marvin Martian Bio - hello there your seeding may have worked!",
         total_distance_covered: 30000,
         total_steps: 300000,
         total_elevation_gain: 6000,
         current_challenge: {},
     },
 ];
+module.exports = testUsers;

@@ -1,4 +1,4 @@
-[
+const testActivities = [
     {
         username: "Marvin Martian",
         date: "2021/10/29",
@@ -67,3 +67,5 @@
         comment: "My first marathon",
     },
 ];
+
+module.exports = testActivities;
