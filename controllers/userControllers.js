@@ -1,22 +1,28 @@
+const { fetchUsers, fetchUserByUsername } = require("../models/userModels");
+
 exports.getUsers = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(200).send("Hello");
+        const fetchedUsers = await fetchUsers();
+        console.log("fetchUsers worked");
+        res.status(200).send({ users: fetchedUsers });
     } catch (error) {
         next(error);
     }
 };
 
-exports.getUserById = async (req, res, next) => {
+exports.getUserByUsername = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(200).send();
+        const userName = req.params.user_name;
+        console.log(userName);
+        const fetchedUserByUsername = await fetchUserByUsername(userName);
+        console.log("fetchUserByUsername worked");
+        res.status(200).send({ user: fetchedUserByUsername });
     } catch (error) {
         next(error);
     }
 };
 
-exports.patchUserById = async (req, res, next) => {
+exports.patchUserByUsername = async (req, res, next) => {
     try {
         // Function Goes Here
         res.status(200).send();
