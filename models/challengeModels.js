@@ -9,9 +9,14 @@ exports.fetchChallenges = async () => {
 exports.fetchChallengeById = async (challenge_id) => {
     console.log(challenge_id)
     const result = await Challenge.findById(challenge_id).exec();
-    console.log(result)
     return result;
 };
 
 exports.editChallengeById = async (challenge_id) => {};
-exports.addChallenge = async (newChallenge) => {};
+
+exports.addChallenge = async (newChallenge) => {
+    let challengeToPost = new Challenge(newChallenge);
+    const result = await challengeToPost.save()
+    console.log(result)
+    return result;
+};
