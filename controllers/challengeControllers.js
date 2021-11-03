@@ -1,7 +1,9 @@
+const { fetchChallenges } = require("../models/challengeModels");
+
 exports.getChallenges = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(200).send();
+        const challenges = await fetchChallenges()
+        res.status(200).send({ challenges });
     } catch (error) {
         next(error);
     }
