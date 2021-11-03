@@ -5,23 +5,24 @@ const activitySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    map: {
+    date: {
+        type: Date,
+        required: true,
+    },
+    distanceTravelled: {
+        type: Number,
+        required: true,
+    },
+    metersClimbed: {
+        type: Number,
+        required: true,
+    },
+    stepCount: {
+        type: Number,
+        required: true,
+    },
+    timeElapsed: {
         type: String,
-        required: true,
-    },
-    steps: {
-        type: Number,
-    },
-    distance: {
-        type: Number,
-        required: true,
-    },
-    elevation: {
-        type: Number,
-        required: true,
-    },
-    time: {
-        type: Number,
         required: true,
     },
     activityType: {
@@ -30,7 +31,16 @@ const activitySchema = new mongoose.Schema({
     },
     comment: {
         type: String,
-    }, 
+    },
+    challenge_ID: {
+        type: String,
+        required: true,
+    },
+    polylineArray: {
+        type: Array,
+        required: true,
+    } 
+    
 })
 
 module.exports = mongoose.model('Activity', activitySchema);
