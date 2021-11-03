@@ -1,16 +1,16 @@
 const express = require("express");
 const {
-    getActivities,
+    getActivitiesByUsername,
     getActivityById,
     patchActivityById,
     postActivity,
 } = require("../controllers/activityControllers.js");
 const activityRouter = express.Router();
 
-activityRouter.get("/", getActivities);
-activityRouter.get("/:activity_id", getActivityById);
+activityRouter.get("/:username", getActivitiesByUsername);
+activityRouter.get("/activity/:activity_id", getActivityById);
 
-activityRouter.patch("/:activity_id", patchActivityById);
+//activityRouter.patch("/:activity_id", patchActivityById);
 
 activityRouter.post("/", postActivity);
 
