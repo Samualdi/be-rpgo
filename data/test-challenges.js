@@ -5,7 +5,7 @@ const testChallenges = [
             "You are being chased by a dragon, cover 1000 steps to escape",
         reward: "blueTrophy.png",
         activity_type: "steps",
-        timed_challenge: [true, new Date("December 17, 2021 03:24:00")],
+        timed_challenge: [true, 60],
         activity_value: 1000,
         xp: 250
     },
