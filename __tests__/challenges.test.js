@@ -24,3 +24,21 @@ describe("GET/api/challenges.", () => {
         });
     });
 });
+
+describe("GET/api/challenges/:challenge_id.", () => {
+    test("200: returns a challenge based on its id", async () => {
+        const res = await request(app)
+            .get("/api/challenges/6182a5f5bb0b4d3142b70249")
+            .expect(200);
+        expect(res.body.challenge.title).toBe("Run From the Dragon");
+        expect(res.body.challenge).toMatchObject({
+            title: expect.any(String),
+            description: expect.any(String),
+            reward: expect.any(String),
+            activity_type: expect.any(String),
+            timed_challenge: expect.any(Array),
+            activity_value: expect.any(Number),
+            xp: expect.any(Number),
+        });
+    });
+});
