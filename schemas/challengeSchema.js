@@ -20,7 +20,7 @@ const challengeSchema = new mongoose.Schema({
     timed_challenge: [
         {
             type: Boolean,
-            required: true,
+            // required: true,
         },
         { type: Number },
     ],
