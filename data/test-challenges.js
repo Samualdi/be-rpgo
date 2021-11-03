@@ -7,6 +7,7 @@ const testChallenges = [
         activity_type: "steps",
         timed_challenge: [true, new Date("December 17, 2021 03:24:00")],
         activity_value: 1000,
+        xp: 250
     },
     {
         title: "Climb the Tower",
@@ -16,6 +17,7 @@ const testChallenges = [
         activity_type: "elevation",
         timed_challenge: [false, null],
         activity_value: 50,
+        xp: 150
     },
     {
         title: "One does not simply...",
@@ -24,6 +26,7 @@ const testChallenges = [
         activity_type: "distance",
         timed_challenge: [false, null],
         activity_value: 5000,
+        xp: 400
     },
     {
         title: "Help the Grey Mage",
@@ -32,6 +35,7 @@ const testChallenges = [
         activity_type: "distance",
         timed_challenge: [false, null],
         activity_value: 2000,
+        xp: 200
     },
     {
         title: "Break the curse",
@@ -41,6 +45,7 @@ const testChallenges = [
         activity_type: "distance",
         timed_challenge: [false, null],
         activity_value: 1000,
+        xp: 120
     },
 ];
 
