@@ -13,13 +13,7 @@ exports.fetchActivityById = async (activity_id) => {
 }
 
 exports.addActivity = async (activityData) => {
-    console.log(activityData);
-    const activityToPost = new Activity({
-
-    });
-    const result = await activityToPost.save(err => {console.log(err)});
-    return result;
-    
-
-    
+    let activityToPost = new Activity(activityData);
+    const result = await activityToPost.save();
+    return result;  
 }

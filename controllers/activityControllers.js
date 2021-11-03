@@ -1,4 +1,4 @@
-const { fetchActivitiesByUsername, fetchActivityById } = require('../models/activity-models.js');
+const { fetchActivitiesByUsername, fetchActivityById, addActivity } = require('../models/activity-models.js');
 
 exports.getActivitiesByUsername = async (req, res, next) => {
     try {
@@ -33,7 +33,7 @@ exports.getActivityById = async (req, res, next) => {
 exports.postActivity = async (req, res, next) => {
     try {
         const activityData = req.body;
-        const postedActivity = await addActivity(activitydata);
+        const postedActivity = await addActivity(activityData);
         res.status(201).send({postedActivity: postedActivity });
     } catch (error) {
         next(error);
