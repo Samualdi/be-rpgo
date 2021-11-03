@@ -1,36 +1,40 @@
-const { fetchActivities } = require('../models/activity-models.js');
+const { fetchActivitiesByUsername, fetchActivityById } = require('../models/activity-models.js');
 
-exports.getActivities = async (req, res, next) => {
+exports.getActivitiesByUsername = async (req, res, next) => {
     try {
-        const activities = await fetchActivities()
+        const { username } = req.params;
+        const activities = await fetchActivitiesByUsername(username);
         res.status(200).send({activities: activities});
     } catch (error) {
+        console.log(error);
         next(error);
     }
 };
 
 exports.getActivityById = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(200).send();
+        const { activity_id } = req.params;
+        const activity = await fetchActivityById(activity_id)
+        res.status(200).send({activity: activity});
     } catch (error) {
         next(error);
     }
 };
 
-exports.patchActivityById = async (req, res, next) => {
-    try {
-        // Function Goes Here
-        res.status(200).send();
-    } catch (error) {
-        next(error);
-    }
-};
+// exports.patchActivityById = async (req, res, next) => {
+//     try {
+//         // Function Goes Here
+//         res.status(200).send();
+//     } catch (error) {
+//         next(error);
+//     }
+// }; DO WE NEED THIS???
 
 exports.postActivity = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(201).send();
+        const activityData = req.body;
+        const postedActivity = await addActivity(activitydata);
+        res.status(201).send({postedActivity: postedActivity });
     } catch (error) {
         next(error);
     }

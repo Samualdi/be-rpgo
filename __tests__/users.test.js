@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("../server.js");
 const { seedUsers } = require("../Seeds/seed.js");
 const MongoClient = require("mongodb").MongoClient;
-
+//for merging!
 beforeEach(() => seedUsers());
 
 describe.only("GET /api/users", () => {
