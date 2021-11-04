@@ -6,14 +6,14 @@ const testChallenges = require("../data/test-challenges");
 require("dotenv").config();
 
 async function seedUsers() {
-    const client = new MongoClient(process.env.MONGODB_URI, {
+    const client = new MongoClient(process.env.SERVER, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
     try {
         await client.connect();
         console.log("Connected correctly to server");
-        const userCollection = client.db("RPGO-DB-Test").collection("users");
+        const userCollection = client.db("RPGo-Test-DB").collection("users");
         userCollection.drop();
 
         await userCollection.insertMany(testUsers);
@@ -26,7 +26,7 @@ async function seedUsers() {
 }
 
 async function seedActivities() {
-    const client = new MongoClient(process.env.MONGODB_URI, {
+    const client = new MongoClient(process.env.SERVER, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
@@ -34,7 +34,7 @@ async function seedActivities() {
         await client.connect();
         console.log("Connected correctly to server");
         const activitiesCollection = client
-            .db("RPGO-DB-Test")
+            .db("RPGo-Test-DB")
             .collection("activities");
         activitiesCollection.drop();
 
@@ -48,7 +48,7 @@ async function seedActivities() {
 }
 
 async function seedChallenges() {
-    const client = new MongoClient(process.env.MONGODB_URI, {
+    const client = new MongoClient(process.env.SERVER, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
@@ -56,7 +56,7 @@ async function seedChallenges() {
         await client.connect();
         console.log("Connected correctly to server");
         const challengesCollection = client
-            .db("RPGO-DB-Test")
+            .db("RPGo-Test-DB")
             .collection("challenges");
         challengesCollection.drop();
 
