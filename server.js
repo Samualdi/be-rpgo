@@ -12,10 +12,13 @@ app.use("/api", apiRouter);
 
 app.all("*", getNoPathMessage);
 
-// mongoose.connect(process.env.SERVER, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// });
+mongoose
+    .connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {})
+    .catch((err) => console.log(err));
 
 app.listen(process.env.PORT || 3500, () => {
     console.log("app listening on 3500");
