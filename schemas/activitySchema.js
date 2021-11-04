@@ -22,7 +22,7 @@ const activitySchema = new mongoose.Schema({
         required: true,
     },
     timeElapsed: {
-        type: String,
+        type: Number,
         required: true,
     },
     activityType: {
