@@ -1,7 +1,9 @@
+const { fetchChallenges, fetchChallengeById, editChallengeById, addChallenge } = require("../models/challengeModels");
+
 exports.getChallenges = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(200).send();
+        const challenges = await fetchChallenges()
+        res.status(200).send({ challenges });
     } catch (error) {
         next(error);
     }
@@ -9,8 +11,9 @@ exports.getChallenges = async (req, res, next) => {
 
 exports.getChallengeById = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(200).send();
+        const { challenge_id } = req.params;
+        const challenge = await fetchChallengeById(challenge_id)
+        res.status(200).send({ challenge });
     } catch (error) {
         next(error);
     }
@@ -18,8 +21,12 @@ exports.getChallengeById = async (req, res, next) => {
 
 exports.patchChallengeById = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(200).send();
+        const { challenge_id } = req.params;
+        const challengeUpdates = req.body;
+        console.log(challenge_id)
+        console.log(challengeUpdates)
+        const updatedChallenge = await editChallengeById(challenge_id,challengeUpdates)
+        res.status(200).send({updatedChallenge});
     } catch (error) {
         next(error);
     }
@@ -27,8 +34,10 @@ exports.patchChallengeById = async (req, res, next) => {
 
 exports.postChallenge = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(201).send();
+        const newChallenge = req.body;
+        console.log(newChallenge)
+        const createdChallenge = await addChallenge(newChallenge)
+        res.status(201).send( {createdChallenge} );
     } catch (error) {
         next(error);
     }
