@@ -1,4 +1,9 @@
-const { fetchUsers, fetchUserByUsername } = require("../models/userModels");
+const {
+    fetchUsers,
+    fetchUserByUsername,
+    editUserByUsername,
+    addUser,
+} = require("../models/userModels");
 
 exports.getUsers = async (req, res, next) => {
     try {
@@ -16,7 +21,7 @@ exports.getUserByUsername = async (req, res, next) => {
         console.log(userName);
         const fetchedUserByUsername = await fetchUserByUsername(userName);
         console.log("fetchUserByUsername worked");
-        res.status(200).send({ user: fetchedUserByUsername });
+        res.status(200).send({ user: fetchedUserByUsername[0] });
     } catch (error) {
         next(error);
     }
@@ -24,8 +29,16 @@ exports.getUserByUsername = async (req, res, next) => {
 
 exports.patchUserByUsername = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(200).send();
+        const userName = req.params.user_name;
+        const property_to_change = req.body.property_to_change;
+        const amount_to_increase = req.body.amount_to_increase;
+
+        const editedUserByUsername = await editUserByUsername(
+            userName,
+            property_to_change,
+            amount_to_increase
+        );
+        res.status(200).send({ user: editedUserByUsername[0] });
     } catch (error) {
         next(error);
     }
@@ -33,8 +46,9 @@ exports.patchUserByUsername = async (req, res, next) => {
 
 exports.postUser = async (req, res, next) => {
     try {
-        // Function Goes Here
-        res.status(201).send();
+        const userData = req.body;
+        const postedUser = await addUser(userData);
+        res.status(201).send({ user: postedUser[0] });
     } catch (error) {
         next(error);
     }
