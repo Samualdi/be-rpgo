@@ -6,14 +6,14 @@ const testChallenges = require("../data/test-challenges");
 require("dotenv").config();
 
 async function seedUsers() {
-    const client = new MongoClient(process.env.MONGODB_URI, {
+    const client = new MongoClient(process.env.SERVER, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
     try {
         await client.connect();
         console.log("Connected correctly to server");
-        const userCollection = client.db("RPGo-DB").collection("users");
+        const userCollection = client.db("RPGo-Test-DB").collection("users");
         userCollection.drop();
 
         await userCollection.insertMany(testUsers);
@@ -26,9 +26,7 @@ async function seedUsers() {
 }
 
 async function seedActivities() {
-    const uri =
-        "mongodb+srv://gitpushgitpaid:gpgp2021@cluster0.j8dax.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-    const client = new MongoClient(process.env.MONGODB_URI, {
+    const client = new MongoClient(process.env.SERVER, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
@@ -36,7 +34,7 @@ async function seedActivities() {
         await client.connect();
         console.log("Connected correctly to server");
         const activitiesCollection = client
-            .db("RPGo-DB")
+            .db("RPGo-Test-DB")
             .collection("activities");
         activitiesCollection.drop();
 
@@ -50,9 +48,7 @@ async function seedActivities() {
 }
 
 async function seedChallenges() {
-    const uri =
-        "mongodb+srv://gitpushgitpaid:gpgp2021@cluster0.j8dax.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-    const client = new MongoClient(process.env.MONGODB_URI, {
+    const client = new MongoClient(process.env.SERVER, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
@@ -60,7 +56,7 @@ async function seedChallenges() {
         await client.connect();
         console.log("Connected correctly to server");
         const challengesCollection = client
-            .db("RPGo-DB")
+            .db("RPGo-Test-DB")
             .collection("challenges");
         challengesCollection.drop();
 
