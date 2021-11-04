@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node listen.js",
     "test": "jest",
-    "seed": "node Seeds/seed.js"
+    "seed": "node Seeds/seed.js",
+    "seed-test": "node Seeds/seed-test.js"
   },
   "repository": {
     "type": "git",
