@@ -20,8 +20,8 @@ mongoose
     .then(() => {})
     .catch((err) => console.log(err));
 
-app.listen(process.env.PORT || 3500, () => {
-    console.log("app listening on 3500");
-});
+// app.listen(process.env.PORT || 3500, () => {
+//     console.log("app listening on 3500");
+// });
 
 module.exports = app;
