@@ -22,7 +22,28 @@ describe("GET/api/challenges.", () => {
             });
         });
         expect(res.body.challenges.length >= 5).toBe(true);
-    }, 60000);
+    }, 30000);
+});
+
+describe.only("GET/api/challenges/:username", () => {
+    test("200: returns only challenges that username has NOT completed", async () => {
+        const res = await request(app)
+            .get("/api/challenges/todo/Marvin Martian")
+            .expect(200);
+        res.body.challenges.forEach((challenge) => {
+            expect(challenge).toMatchObject({
+                title: expect.any(String),
+                description: expect.any(String),
+                reward: expect.any(String),
+                activity_type: expect.any(String),
+                timed_challenge: expect.any(Object),
+                activity_value: expect.any(Number),
+                xp: expect.any(Number),
+            });
+            expect(challenge.title).not.toBe("Run From the Dragon");
+        });
+        expect(res.body.challenges.length >= 5).toBe(true);
+    }, 30000);
 });
 
 describe("GET/api/challenges/:challenge_id.", () => {

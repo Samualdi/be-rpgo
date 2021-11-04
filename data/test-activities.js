@@ -6,7 +6,7 @@ const testActivities = [
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
         timeElapsed: 156000,
-        activityType: "run",
+        activityType: "distanceTravelled",
         comment: "Felt pretty good",
         challenge_ID: "somekindofID",
         polylineArray: [
@@ -75,7 +75,7 @@ const testActivities = [
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
         timeElapsed: "00;02;37",
-        activityType: "run",
+        activityType: "distanceTravelled",
         comment: "Very tired, not my best",
         challenge_ID: "somekindofID",
         polylineArray: [
@@ -144,7 +144,7 @@ const testActivities = [
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
         timeElapsed: 156000,
-        activityType: "walk",
+        activityType: "stepCount",
         comment: "Lovely walk with a friend",
         challenge_ID: "somekindofID",
         polylineArray: [
@@ -212,7 +212,7 @@ const testActivities = [
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
         timeElapsed: 156000,
-        activityType: "walk",
+        activityType: "stepCount",
         comment: "Long walk in the sun",
         challenge_ID: "somekindofID",
         polylineArray: [
@@ -280,7 +280,7 @@ const testActivities = [
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
         timeElapsed: 156000,
-        activityType: "run",
+        activityType: "metersClimbed",
         comment: "Abbey dash - not quite a PB",
         challenge_ID: "somekindofID",
         polylineArray: [
@@ -348,7 +348,7 @@ const testActivities = [
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
         timeElapsed: 156000,
-        activityType: "run",
+        activityType: "metersClimbed",
         comment: "My first marathon",
         challenge_ID: "somekindofID",
         polylineArray: [

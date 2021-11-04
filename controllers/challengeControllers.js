@@ -1,4 +1,4 @@
-const { fetchChallenges, fetchChallengeById, editChallengeById, addChallenge } = require("../models/challengeModels");
+const { fetchChallenges, fetchChallengeById, fetchUserChallengesToDo, editChallengeById, addChallenge } = require("../models/challengeModels");
 
 exports.getChallenges = async (req, res, next) => {
     try {
@@ -14,6 +14,16 @@ exports.getChallengeById = async (req, res, next) => {
         const { challenge_id } = req.params;
         const challenge = await fetchChallengeById(challenge_id)
         res.status(200).send({ challenge });
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.getUserChallengesToDo = async (req, res, next) => {
+    try {
+        const { username } = req.params;
+        const challenges = await fetchUserChallengesToDo(username)
+        res.status(200).send({ challenges });
     } catch (error) {
         next(error);
     }
