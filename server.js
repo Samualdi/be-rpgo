@@ -12,7 +12,27 @@ app.use("/api", apiRouter);
 
 app.all("*", getNoPathMessage);
 
-mongoose
+const ENV = process.env.NODE_ENV || "development";
+
+require("dotenv").config({
+    path: `${__dirname}.env.${ENV}`,
+});
+
+const config =
+    ENV === "production"
+        ? {
+              connectionString: process.env.MONGODB_URI,
+              ssl: {
+                  rejectUnauthorized: false,
+              },
+          }
+        : {};
+
+if (!process.env.MONGODB_URI) {
+    throw new Error("Datbase not set");
+}
+
+db = mongoose
     .connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -20,8 +40,5 @@ mongoose
     .then(() => {})
     .catch((err) => console.log(err));
 
-// app.listen(process.env.PORT || 3500, () => {
-//     console.log("app listening on 3500");
-// });
 
 module.exports = app;
