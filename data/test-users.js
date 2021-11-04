@@ -9,7 +9,7 @@ const testUsers = [
         total_distance_covered: 100,
         total_steps: 10000,
         total_elevation_gain: 200,
-        current_challenge: {},
+        current_challenge: { name: "challenge 1" },
     },
     {
         username: "Mitch Jones",
@@ -21,7 +21,7 @@ const testUsers = [
         total_distance_covered: 500,
         total_steps: 50000,
         total_elevation_gain: 800,
-        current_challenge: {},
+        current_challenge: { name: "challenge 1" },
     },
     {
         username: "Shaggy Rogers",
@@ -33,7 +33,7 @@ const testUsers = [
         total_distance_covered: 50000,
         total_steps: 500000,
         total_elevation_gain: 10000,
-        current_challenge: {},
+        current_challenge: { name: "challenge 1" },
     },
     {
         username: "Velma Dinkley",
@@ -45,7 +45,7 @@ const testUsers = [
         total_distance_covered: 40000,
         total_steps: 400000,
         total_elevation_gain: 9000,
-        current_challenge: {},
+        current_challenge: { name: "challenge 1" },
     },
     {
         username: "Marvin Martian",
@@ -53,11 +53,11 @@ const testUsers = [
         sprite: "temp.png",
         xp: 1600,
         trophies: [],
-        bio: "Marvin Martian Bio - hello there your seeding may have worked!",
+        bio: "Marvin Martian Bio",
         total_distance_covered: 30000,
         total_steps: 300000,
         total_elevation_gain: 6000,
-        current_challenge: {},
+        current_challenge: { name: "challenge 1" },
     },
 ];
 module.exports = testUsers;
