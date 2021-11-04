@@ -1,6 +1,10 @@
 {
   "name": "be-rpgo",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x",
+    "npm": "7.x"
+  },
   "description": "Back-end for the RP-Go! App.",
   "main": "index.js",
   "scripts": {
