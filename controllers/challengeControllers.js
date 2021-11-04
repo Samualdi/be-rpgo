@@ -21,10 +21,12 @@ exports.getChallengeById = async (req, res, next) => {
 
 exports.patchChallengeById = async (req, res, next) => {
     try {
-        // const challengeUpdates = req.body;
-        // const updatedChallenge = await editChallengeById()
-        // Function Goes Here
-        res.status(200).send({});
+        const { challenge_id } = req.params;
+        const challengeUpdates = req.body;
+        console.log(challenge_id)
+        console.log(challengeUpdates)
+        const updatedChallenge = await editChallengeById(challenge_id,challengeUpdates)
+        res.status(200).send({updatedChallenge});
     } catch (error) {
         next(error);
     }
