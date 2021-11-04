@@ -5,17 +5,17 @@ const testChallenges = [
             "You are being chased by a dragon, cover 1000 steps to escape",
         reward: "blueTrophy.png",
         activity_type: "steps",
-        timed_challenge: [true, 60],
+        timed_challenge: {time_limit:3600000},
         activity_value: 1000,
         xp: 250
     },
     {
         title: "Climb the Tower",
         description:
-            "You find a deserted guard tower, gain 50 elevationto search it",
+            "You find a deserted guard tower, gain 50 elevation to search it",
         reward: "redTrophy.png",
         activity_type: "elevation",
-        timed_challenge: [false, null],
+        timed_challenge: {},
         activity_value: 50,
         xp: 150
     },
@@ -24,7 +24,7 @@ const testChallenges = [
         description: "Cover 5km to enter a new area",
         reward: "theOneTrophy.png",
         activity_type: "distance",
-        timed_challenge: [false, null],
+        timed_challenge: {},
         activity_value: 5000,
         xp: 400
     },
@@ -33,7 +33,7 @@ const testChallenges = [
         description: "Explore an area of 2km to find plants for a mage",
         reward: "greyTrophy.png",
         activity_type: "distance",
-        timed_challenge: [false, null],
+        timed_challenge: {},
         activity_value: 2000,
         xp: 200
     },
@@ -43,7 +43,7 @@ const testChallenges = [
             "you've been cursed, walk a mile in someone else's shoes to break the curse",
         reward: "purpleMedal.png",
         activity_type: "distance",
-        timed_challenge: [false, null],
+        timed_challenge: {},
         activity_value: 1000,
         xp: 120
     },

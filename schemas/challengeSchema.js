@@ -18,7 +18,7 @@ const challengeSchema = new mongoose.Schema({
         required: true,
     },
     timed_challenge: {
-        type: Array,
+        type: Object,
     },
     activity_value: {
         type: Number,
