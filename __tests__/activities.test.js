@@ -2,32 +2,62 @@ const app = require('../server.js');
 const Activity = require('../schemas/activitySchema.js');
 const request = require('supertest');
 const mongoose = require('mongoose');
+const db = require('../connection.js');
+
 
 afterAll(async () => {
     await mongoose.connection.close();
-})
+});
+
 
 describe("GET/api/activities/:username", () => {
-    test("200: returns all activities for a given user", async () => {
+    test("200: returns all activities for a given user sorted by date", async () => {
         const res = await request(app)
             .get("/api/activities/Marvin Martian")
             .expect(200);
         expect(res.body.activities).toHaveLength(2);
         console.log(res.body.activities);
         expect(res.body.activities[0].username).toBe('Marvin Martian');
-    });
+        res.body.activities.forEach(activity => {
+            expect.objectContaining({
+                _id: expect.any(String),
+                date: expect.any(String),
+                distanceTravelled: expect.any(Number),
+                metersClimbed: expect.any(Number),
+                stepCount: expect.any(Number),
+                timeElapsed: expect.any(Number),
+                activityType: expect.any(String),
+                comment: expect.any(String),
+                challenge_ID: expect.any(String),
+                polylineArray: expect.any(Array),
+            });
+        })
+        
+    }, 15000);
 
 });
 
 describe('GET/api/activities/:activity_id', () => {
     test('200: returns a single activity based on its id', async () => {
         const res = await request(app)
-            .get("/api/activities/activity/618278da9e1712a7d8fb7bd1")
+            .get("/api/activities/activity/6182f14f5d378b71e16eea81")
             .expect(200);
         expect(res.body.activity.username).toEqual("Marvin Martian");
         console.log(res.body.activity);
         expect(res.body.activity.comment).toEqual("Felt pretty good");
-    });
+        expect.objectContaining({
+            _id: expect.any(String),
+            date: expect.any(String),
+            distanceTravelled: expect.any(Number),
+            metersClimbed: expect.any(Number),
+            stepCount: expect.any(Number),
+            timeElapsed: expect.any(Number),
+            activityType: expect.any(String),
+            comment: expect.any(String),
+            challenge_ID: expect.any(String),
+            polylineArray: expect.any(Array),
+        });
+    }, 10000);
     
 });
 
@@ -41,7 +71,7 @@ describe('POST/api/activities', () => {
                 distanceTravelled: 22,
                 metersClimbed: 0.06950537816285873,
                 stepCount: 29,
-                timeElapsed: "00;02;37",
+                timeElapsed: 156000,
                 activityType: "run",
                 comment: "Very busy day, glad I managed to get out for a run",
                 challenge_ID: "somekindofID",
@@ -104,9 +134,9 @@ describe('POST/api/activities', () => {
                 ],
             })
             .expect(201);
-        expect(res.body.postedActivity.username).toBe("Shaggy Rogers");
+        expect(res.body.postedActivity.username).toEqual("Shaggy Rogers");
         expect(res.body.postedActivity.comment).toBe("Very busy day, glad I managed to get out for a run");
-    });
+    }, 10000)
 })
 
         

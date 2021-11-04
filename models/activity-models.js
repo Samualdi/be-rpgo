@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Activity = require('../schemas/activitySchema.js');
 
 exports.fetchActivitiesByUsername = async (username) => {
-    const result = await Activity.find({username: username}).exec();
+    const result = await Activity.find({ username: username }).sort({date: -1}).exec();
     return result;
 }
 
