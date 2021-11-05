@@ -32,11 +32,13 @@ exports.patchUserByUsername = async (req, res, next) => {
         const userName = req.params.user_name;
         const property_to_change = req.body.property_to_change;
         const amount_to_increase = req.body.amount_to_increase;
+        const trophy_to_add = req.body.trophy_to_add;
 
         const editedUserByUsername = await editUserByUsername(
             userName,
             property_to_change,
-            amount_to_increase
+            amount_to_increase,
+            trophy_to_add
         );
         res.status(200).send({ user: editedUserByUsername[0] });
     } catch (error) {
