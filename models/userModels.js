@@ -14,16 +14,32 @@ exports.fetchUserByUsername = async (userName) => {
 exports.editUserByUsername = async (
     userName,
     property_to_change,
-    amount_to_increase
+    amount_to_increase,
+    trophy_to_add
 ) => {
     const userToUpdate = await User.find({ username: userName });
-    console.log(userToUpdate[0][property_to_change]);
+    // console.log(userToUpdate[0][property_to_change]);
     if (typeof userToUpdate[0][property_to_change] === "number") {
         const updatedUser = await User.updateOne(
             { username: userName },
             {
                 $inc: {
                     [property_to_change]: amount_to_increase,
+                },
+            }
+        );
+        const updatedUserSucess = await User.find({ username: userName });
+        return updatedUserSucess;
+    } else if (
+        trophy_to_add !== undefined &&
+        property_to_change === "trophies"
+    ) {
+        const trophyListToUpdate = [...userToUpdate[0].trophies, trophy_to_add];
+        const updatedUser = await User.updateOne(
+            { username: userName },
+            {
+                $set: {
+                    trophies: trophyListToUpdate,
                 },
             }
         );
