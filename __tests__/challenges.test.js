@@ -25,7 +25,7 @@ describe("GET/api/challenges.", () => {
     }, 30000);
 });
 
-describe.only("GET/api/challenges/:username", () => {
+describe("GET/api/challenges/todo/:username", () => {
     test("200: returns only challenges that username has NOT completed", async () => {
         const res = await request(app)
             .get("/api/challenges/todo/Marvin Martian")
