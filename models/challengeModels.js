@@ -20,10 +20,9 @@ exports.fetchUserChallengesToDo = async (username) => {
     ).exec();
 
     const allChallenges = await Challenge.find().exec();
-
     const result = allChallenges.filter((challenge) => {
         return completedActivityIds.every((id) => {
-            return `${id.challenge_ID}` !== `${challenge._id}`;
+            return `${id.challenge_ID}` !== `${challenge.title}`;
         });
     });
     return result;

@@ -8,7 +8,7 @@ const testActivities = [
         timeElapsed: 156000,
         activityType: "distanceTravelled",
         comment: "Felt pretty good",
-        challenge_ID: "somekindofID",
+        challenge_ID: "One does not simply...",
         polylineArray: [
             {
                 latitude: 53.814451536192024,
@@ -77,7 +77,7 @@ const testActivities = [
         timeElapsed: "00;02;37",
         activityType: "distanceTravelled",
         comment: "Very tired, not my best",
-        challenge_ID: "somekindofID",
+        challenge_ID: "Help the Grey Mage",
         polylineArray: [
             {
                 latitude: 53.814451536192024,
@@ -146,7 +146,7 @@ const testActivities = [
         timeElapsed: 156000,
         activityType: "stepCount",
         comment: "Lovely walk with a friend",
-        challenge_ID: "somekindofID",
+        challenge_ID: "Run From the Dragon",
         polylineArray: [
             {
                 latitude: 53.814451536192024,
@@ -212,9 +212,9 @@ const testActivities = [
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
         timeElapsed: 156000,
-        activityType: "stepCount",
+        activityType: "distanceTravelled",
         comment: "Long walk in the sun",
-        challenge_ID: "somekindofID",
+        challenge_ID: "Help the Grey Mage",
         polylineArray: [
             {
                 latitude: 53.814451536192024,
@@ -277,12 +277,12 @@ const testActivities = [
         username: "Mitch Jones",
         date: "2021-08-12T23:00:00.000Z",
         distanceTravelled: 22,
-        metersClimbed: 0.06950537816285873,
+        metersClimbed: 50.06950537816285873,
         stepCount: 29,
         timeElapsed: 156000,
         activityType: "metersClimbed",
         comment: "Abbey dash - not quite a PB",
-        challenge_ID: "somekindofID",
+        challenge_ID: "Climb the Tower",
         polylineArray: [
             {
                 latitude: 53.814451536192024,
@@ -348,9 +348,9 @@ const testActivities = [
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
         timeElapsed: 156000,
-        activityType: "metersClimbed",
+        activityType: "distanceTravelled",
         comment: "My first marathon",
-        challenge_ID: "somekindofID",
+        challenge_ID: "One does not simply...",
         polylineArray: [
             {
                 latitude: 53.814451536192024,
