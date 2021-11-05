@@ -13,7 +13,16 @@ exports.fetchActivityById = async (activity_id) => {
 }
 
 exports.addActivity = async (activityData) => {
-    let activityToPost = new Activity(activityData);
+    const activityToPost = new Activity(activityData);
     const result = await activityToPost.save();
+    return result;  
+}
+
+exports.updateActivityById = async (activity_id, activityUpdate) => {
+    const result = await Activity.findByIdAndUpdate(
+        activity_id,
+        activityUpdate,
+        {new:true}
+    ).exec()
     return result;  
 }

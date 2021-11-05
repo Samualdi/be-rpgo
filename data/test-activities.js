@@ -1,7 +1,7 @@
 const testActivities = [
     {
         username: "Marvin Martian",
-        date: "2021/10/29",
+        date: "2021-10-29T23:00:00.000Z",
         distanceTravelled: 22,
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
@@ -70,7 +70,7 @@ const testActivities = [
 
     {
         username: "Marvin Martian",
-        date: "2021/10/27",
+        date: "2021-10-27T23:00:00.000Z",
         distanceTravelled: 156000,
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
@@ -139,7 +139,7 @@ const testActivities = [
 
     {
         username: "Jayne Doe",
-        date: "2021/09/15",
+        date: "2021-09-15T23:00:00.000Z",
         distanceTravelled: 22,
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
@@ -207,7 +207,7 @@ const testActivities = [
     },
     {
         username: "Jayne Doe",
-        date: "2021/09/15",
+        date: "2021-10-14T23:00:00.000Z",
         distanceTravelled: 22,
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
@@ -275,7 +275,7 @@ const testActivities = [
     },
     {
         username: "Mitch Jones",
-        date: "2021/08/12",
+        date: "2021-08-12T23:00:00.000Z",
         distanceTravelled: 22,
         metersClimbed: 0.06950537816285873,
         stepCount: 29,
@@ -343,7 +343,7 @@ const testActivities = [
     },
     {
         username: "Shaggy Rogers",
-        date: "2021/09/14",
+        date: "2021-09-14T23:00:00.000Z",
         distanceTravelled: 22,
         metersClimbed: 0.06950537816285873,
         stepCount: 29,

@@ -10,7 +10,7 @@ const activityRouter = express.Router();
 activityRouter.get("/:username", getActivitiesByUsername);
 activityRouter.get("/activity/:activity_id", getActivityById);
 
-//activityRouter.patch("/:activity_id", patchActivityById);
+activityRouter.patch("/:activity_id", patchActivityById);
 
 activityRouter.post("/", postActivity);
 
