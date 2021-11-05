@@ -42,7 +42,7 @@ describe.only("GET/api/challenges/:username", () => {
             });
             expect(challenge.title).not.toBe("Run From the Dragon");
         });
-        expect(res.body.challenges.length >= 5).toBe(true);
+        expect(res.body.challenges.length >= 4).toBe(true);
     }, 30000);
 });
 

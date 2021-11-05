@@ -14,35 +14,19 @@ exports.fetchChallengeById = async (challenge_id) => {
 };
 
 exports.fetchUserChallengesToDo = async (username) => {
-    console.log(username);
-
     const completedActivityIds = await Activity.find(
         { username: username },
         "challenge_ID"
     ).exec();
 
-    // console.log(completedActivityIds);
-
     const allChallenges = await Challenge.find().exec();
 
-    // console.log(allChallenges)
-
-    const allChallengesFiltered = allChallenges.filter((el) => {
-        // console.log('hello?')
-      
-        console.log( el._id)
-        return completedActivityIds.map((f) => {
-        //     // console.log( el._id.includes(f.challenge_ID));
-        //     console.log( el._id, f.challenge_ID);
-            console.log( f.challenge_ID);
-            // return f.challenge_ID !== el._id;
+    const result = allChallenges.filter((challenge) => {
+        return completedActivityIds.every((id) => {
+            return `${id.challenge_ID}` !== `${challenge._id}`;
         });
     });
-
-    // console.log(allChallengesFiltered);
-
-    // const result = await Challenge.findById(username).exec();
-    // return result;
+    return result;
 };
 
 exports.editChallengeById = async (challenge_id, challengeUpdates) => {
