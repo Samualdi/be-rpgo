@@ -6,7 +6,7 @@ const testChallenges = require("../data/test-challenges");
 require("dotenv").config();
 
 async function seedUsers() {
-    const client = new MongoClient(process.env.MONGODB_URI, {
+    const client = new MongoClient(process.env.SERVER, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
@@ -28,7 +28,7 @@ async function seedUsers() {
 async function seedActivities() {
     const uri =
         "mongodb+srv://gitpushgitpaid:gpgp2021@cluster0.j8dax.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-    const client = new MongoClient(process.env.MONGODB_URI, {
+    const client = new MongoClient(process.env.SERVER, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
@@ -52,7 +52,7 @@ async function seedActivities() {
 async function seedChallenges() {
     const uri =
         "mongodb+srv://gitpushgitpaid:gpgp2021@cluster0.j8dax.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-    const client = new MongoClient(process.env.MONGODB_URI, {
+    const client = new MongoClient(process.env.SERVER, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
