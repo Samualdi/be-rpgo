@@ -4,7 +4,7 @@ exports.getActivitiesByUsername = async (req, res, next) => {
     try {
         const { username } = req.params;
         const activities = await fetchActivitiesByUsername(username);
-        res.status(200).send({activities: activities});
+        res.status(200).send({activities});
     } catch (error) {
         console.log(error);
         next(error);
@@ -15,7 +15,7 @@ exports.getActivityById = async (req, res, next) => {
     try {
         const { activity_id } = req.params;
         const activity = await fetchActivityById(activity_id)
-        res.status(200).send({activity: activity});
+        res.status(200).send({activity});
     } catch (error) {
         next(error);
     }
@@ -26,7 +26,7 @@ exports.patchActivityById = async (req, res, next) => {
         const { activity_id } = req.params;
         const activityUpdate = req.body;
         const updatedActivity = await updateActivityById(activity_id, activityUpdate);
-        res.status(200).send({updatedActivity: updatedActivity});
+        res.status(200).send({updatedActivity});
     } catch (error) {
         console.log(error);
         next(error);
