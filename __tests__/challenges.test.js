@@ -7,7 +7,7 @@ afterAll(async () => {
     await mongoose.connection.close();
 });
 
-describe("GET/api/challenges.", () => {
+describe.only("GET/api/challenges.", () => {
     test("200: returns all challenges", async () => {
         const res = await request(app).get("/api/challenges").expect(200);
         res.body.challenges.forEach((challenge) => {
@@ -25,7 +25,7 @@ describe("GET/api/challenges.", () => {
     }, 30000);
 });
 
-describe.only("GET/api/challenges/:username", () => {
+describe.only("GET/api/challenges/todo/:username", () => {
     test("200: returns only challenges that username has NOT completed", async () => {
         const res = await request(app)
             .get("/api/challenges/todo/Marvin Martian")
@@ -40,9 +40,9 @@ describe.only("GET/api/challenges/:username", () => {
                 activity_value: expect.any(Number),
                 xp: expect.any(Number),
             });
-            expect(challenge.title).not.toBe("Run From the Dragon");
+            expect(challenge.title).not.toBe("One does not simply..." || "Help the Grey Mage");
         });
-        expect(res.body.challenges.length >= 4).toBe(true);
+        expect(res.body.challenges.length >= 3).toBe(true);
     }, 30000);
 });
 

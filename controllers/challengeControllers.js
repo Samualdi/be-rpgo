@@ -25,6 +25,7 @@ exports.getUserChallengesToDo = async (req, res, next) => {
         const challenges = await fetchUserChallengesToDo(username)
         res.status(200).send({ challenges });
     } catch (error) {
+        console.log(error)
         next(error);
     }
 };
