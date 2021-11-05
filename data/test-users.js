@@ -2,7 +2,7 @@ const testUsers = [
     {
         username: "Jayne Doe",
         password: "Password1",
-        sprite: "temp.png",
+        sprite: "Witch.gif",
         xp: 20,
         trophies: [],
         bio: "Jayne Doe Bio",
@@ -14,7 +14,7 @@ const testUsers = [
     {
         username: "Mitch Jones",
         password: "Password1",
-        sprite: "temp.png",
+        sprite: "Knight-2.gif",
         xp: 50,
         trophies: [],
         bio: "Mitch Jones Bio",
@@ -26,7 +26,7 @@ const testUsers = [
     {
         username: "Shaggy Rogers",
         password: "Password1",
-        sprite: "temp.png",
+        sprite: "Minotaur.gif",
         xp: 2000,
         trophies: [],
         bio: "Shaggy Rogers Bio",
@@ -38,7 +38,7 @@ const testUsers = [
     {
         username: "Velma Dinkley",
         password: "Password1",
-        sprite: "temp.png",
+        sprite: "Reaper.gif",
         xp: 2000,
         trophies: [],
         bio: "Velma Dinkley Bio",
@@ -50,7 +50,7 @@ const testUsers = [
     {
         username: "Marvin Martian",
         password: "Password1",
-        sprite: "temp.png",
+        sprite: "Chocobo.gif",
         xp: 1600,
         trophies: [],
         bio: "Marvin Martian Bio",
