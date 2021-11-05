@@ -2,7 +2,7 @@ const app = require('../server.js');
 const Activity = require('../schemas/activitySchema.js');
 const request = require('supertest');
 const mongoose = require('mongoose');
-const db = require('../connection.js');
+
 
 
 afterAll(async () => {
@@ -15,6 +15,7 @@ describe("GET/api/activities/:username", () => {
         const res = await request(app)
             .get("/api/activities/Marvin Martian")
             .expect(200);
+        console.log(res.body.activities)
         expect(res.body.activities).toHaveLength(2);
         console.log(res.body.activities);
         expect(res.body.activities[0].username).toBe('Marvin Martian');
@@ -33,14 +34,14 @@ describe("GET/api/activities/:username", () => {
             });
         })
         
-    }, 15000);
+    }, 30000);
 
 });
 
 describe('GET/api/activities/:activity_id', () => {
     test('200: returns a single activity based on its id', async () => {
         const res = await request(app)
-            .get("/api/activities/activity/6182f14f5d378b71e16eea81")
+            .get("/api/activities/activity/6184ea7fa9d68aa85788d05b")
             .expect(200);
         expect(res.body.activity.username).toEqual("Marvin Martian");
         console.log(res.body.activity);
@@ -67,7 +68,7 @@ describe('POST/api/activities', () => {
             .post("/api/activities")
             .send({
                 username: "Shaggy Rogers",
-                date: "2021/09/11",
+                date: "2021-09-11T23:00:00.000Z",
                 distanceTravelled: 22,
                 metersClimbed: 0.06950537816285873,
                 stepCount: 29,
@@ -134,9 +135,98 @@ describe('POST/api/activities', () => {
                 ],
             })
             .expect(201);
+        console.log(res.body.postedActivity);
         expect(res.body.postedActivity.username).toEqual("Shaggy Rogers");
         expect(res.body.postedActivity.comment).toBe("Very busy day, glad I managed to get out for a run");
     }, 10000)
 })
 
+describe('PATCH/api/activities/:activity_id', () => {
+    test('should update the relevant activity data for a previously posted activity', async () => {
+        const res = await request(app)
+            .patch("/api/activities/6184fcbb983679de00436394")
+            .send({
+                distanceTravelled: 45,
+                metersClimbed: 1.36950537816285873,
+                stepCount: 123,
+                timeElapsed: 256000,
+                polylineArray: [
+                    {
+                        latitude: 53.814451536192024,
+                        longitude: -1.6649007540445564,
+                        timeStamp: 1635931709000.971,
+                    },
+                ],
+            })
+            .expect(200);
+        expect(res.body.updatedActivity).toMatchObject({
+
+            username: "Shaggy Rogers",
+            date: "2021-09-10T23:00:00.000Z",
+            distanceTravelled: 45,
+            metersClimbed: 1.36950537816285873,
+            stepCount: 123,
+            timeElapsed: 256000,
+            activityType: "run",
+            comment: "Very busy day, glad I managed to get out for a run",
+            challenge_ID: "somekindofID",
+            polylineArray: [
+                {
+                    latitude: 53.814451536192024,
+                    longitude: -1.6649007540445564,
+                    timeStamp: 1635931709000.971,
+                },
+            ],
+        }
+
+        );
+        const res2 = await request(app)
+            .patch("/api/activities/6184fcbb983679de00436394")
+            .send({
+                distanceTravelled: 90,
+                metersClimbed: 2.86950537816285873,
+                stepCount: 325,
+                timeElapsed: 500000,
+                polylineArray: [
+                    {
+                        latitude: 53.814451536192024,
+                        longitude: -1.6649007540445564,
+                        timeStamp: 1635931709000.971,
+                    },
+                    {
+                        latitude: 53.814451536192024,
+                        longitude: -1.6649007540445564,
+                        timeStamp: 1635931724001.3394,
+                    },
+                ],
+            })
+            .expect(200);
+        expect(res2.body.updatedActivity).toMatchObject({
+            username: "Shaggy Rogers",
+            date: "2021-09-10T23:00:00.000Z",
+            distanceTravelled: 90,
+            metersClimbed: 2.86950537816285873,
+            stepCount: 325,
+            timeElapsed: 500000,
+            activityType: "run",
+            comment: "Very busy day, glad I managed to get out for a run",
+            challenge_ID: "somekindofID",
+            polylineArray: [
+                {
+                    latitude: 53.814451536192024,
+                    longitude: -1.6649007540445564,
+                    timeStamp: 1635931709000.971,
+                },
+                {
+                    latitude: 53.814451536192024,
+                    longitude: -1.6649007540445564,
+                    timeStamp: 1635931724001.3394,
+                },
+            ],
+        });
+
+        console.log(res.body.updatedActivity);
+        console.log(res2.body.updatedActivity);
+    }, 25000);
+});
         

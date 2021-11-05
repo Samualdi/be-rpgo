@@ -1,4 +1,4 @@
-const { fetchActivitiesByUsername, fetchActivityById, addActivity } = require('../models/activity-models.js');
+const { fetchActivitiesByUsername, fetchActivityById, addActivity, updateActivityById } = require('../models/activity-models.js');
 
 exports.getActivitiesByUsername = async (req, res, next) => {
     try {
@@ -21,14 +21,17 @@ exports.getActivityById = async (req, res, next) => {
     }
 };
 
-// exports.patchActivityById = async (req, res, next) => {
-//     try {
-//         // Function Goes Here
-//         res.status(200).send();
-//     } catch (error) {
-//         next(error);
-//     }
-// }; DO WE NEED THIS???
+exports.patchActivityById = async (req, res, next) => {
+    try {
+        const { activity_id } = req.params;
+        const activityUpdate = req.body;
+        const updatedActivity = await updateActivityById(activity_id, activityUpdate);
+        res.status(200).send({updatedActivity: updatedActivity});
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+}; 
 
 exports.postActivity = async (req, res, next) => {
     try {
