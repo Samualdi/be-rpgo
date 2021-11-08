@@ -15,11 +15,15 @@ exports.editUserByUsername = async (
     userName,
     property_to_change,
     amount_to_increase,
-    trophy_to_add
+    trophy_to_add,
+    new_sprite
 ) => {
     const userToUpdate = await User.find({ username: userName });
     // console.log(userToUpdate[0][property_to_change]);
-    if (typeof userToUpdate[0][property_to_change] === "number") {
+    if (
+        typeof userToUpdate[0][property_to_change] === "number" &&
+        amount_to_increase !== undefined
+    ) {
         const updatedUser = await User.updateOne(
             { username: userName },
             {
@@ -40,6 +44,17 @@ exports.editUserByUsername = async (
             {
                 $set: {
                     trophies: trophyListToUpdate,
+                },
+            }
+        );
+        const updatedUserSucess = await User.find({ username: userName });
+        return updatedUserSucess;
+    } else if (new_sprite !== undefined && property_to_change === "sprite") {
+        const updatedUser = await User.updateOne(
+            { username: userName },
+            {
+                $set: {
+                    sprite: new_sprite,
                 },
             }
         );
