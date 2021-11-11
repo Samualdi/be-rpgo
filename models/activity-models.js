@@ -8,6 +8,7 @@ exports.fetchActivitiesByUsername = async (username) => {
 
 exports.fetchActivityById = async (activity_id) => {
     const result = await Activity.findById(activity_id).exec();
+    if (!result) return Promise.reject({ status: 404, msg: "Not found." });
     return result;
 
 }
@@ -22,7 +23,9 @@ exports.updateActivityById = async (activity_id, activityUpdate) => {
     const result = await Activity.findByIdAndUpdate(
         activity_id,
         activityUpdate,
-        {new:true}
-    ).exec()
-    return result;  
+        { new: true }
+    ).exec();
+
+    console.log(result);
+    return result;
 }

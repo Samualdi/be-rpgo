@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 
 
 
-afterAll(async () => {
-    await mongoose.connection.close();
-});
+// afterAll(async () => {
+//     await mongoose.connection.close();
+// });
 
 
 describe("GET/api/activities/:username", () => {
@@ -15,9 +15,7 @@ describe("GET/api/activities/:username", () => {
         const res = await request(app)
             .get("/api/activities/Marvin Martian")
             .expect(200);
-        console.log(res.body.activities)
         expect(res.body.activities).toHaveLength(2);
-        console.log(res.body.activities);
         expect(res.body.activities[0].username).toBe('Marvin Martian');
         res.body.activities.forEach(activity => {
             expect.objectContaining({
@@ -36,15 +34,22 @@ describe("GET/api/activities/:username", () => {
         
     }, 30000);
 
+    test('404: returns not found when passed a username that does not exist', async () => {
+        const res = await request(app)
+            .get("/api/activities/notauser")
+            .expect(404)
+        expect(res.body.msg).toBe("Not found.");
+    });
+
 });
+
 
 describe('GET/api/activities/:activity_id', () => {
     test('200: returns a single activity based on its id', async () => {
         const res = await request(app)
-            .get("/api/activities/activity/6184ea7fa9d68aa85788d05b")
+            .get("/api/activities/activity/61852acd07c5b31517e20687")
             .expect(200);
         expect(res.body.activity.username).toEqual("Marvin Martian");
-        console.log(res.body.activity);
         expect(res.body.activity.comment).toEqual("Felt pretty good");
         expect.objectContaining({
             _id: expect.any(String),
@@ -59,13 +64,21 @@ describe('GET/api/activities/:activity_id', () => {
             polylineArray: expect.any(Array),
         });
     }, 10000);
+
+    test('404: returns not found when passed an invalid activity_id', async () => {
+        const res = await request(app)
+            .get("/api/activities/activity/6184ea7fa9d68aa75788d05c")
+            .expect(404);
+        expect(res.body.msg).toBe("Not found.");
+        
+    });
     
 });
 
 describe('POST/api/activities', () => {
     test("201: adds activity to the activities collection", async () => {
         const res = await request(app)
-            .post("/api/activities")
+            .post("/api/activities/activity/618ba582dd940b8849ae77ce")
             .send({
                 username: "Shaggy Rogers",
                 date: "2021-09-11T23:00:00.000Z",
@@ -135,16 +148,16 @@ describe('POST/api/activities', () => {
                 ],
             })
             .expect(201);
-        console.log(res.body.postedActivity);
         expect(res.body.postedActivity.username).toEqual("Shaggy Rogers");
         expect(res.body.postedActivity.comment).toBe("Very busy day, glad I managed to get out for a run");
     }, 10000)
+
 })
 
 describe('PATCH/api/activities/:activity_id', () => {
-    test('should update the relevant activity data for a previously posted activity', async () => {
+    test.only('should update the relevant activity data for a previously posted activity', async () => {
         const res = await request(app)
-            .patch("/api/activities/6184fcbb983679de00436394")
+            .patch("/api/activities/618ba59a7d740be5cf446ae7")
             .send({
                 distanceTravelled: 45,
                 metersClimbed: 1.36950537816285873,
@@ -162,7 +175,7 @@ describe('PATCH/api/activities/:activity_id', () => {
         expect(res.body.updatedActivity).toMatchObject({
 
             username: "Shaggy Rogers",
-            date: "2021-09-10T23:00:00.000Z",
+            date: "2021-09-11T23:00:00.000Z",
             distanceTravelled: 45,
             metersClimbed: 1.36950537816285873,
             stepCount: 123,
@@ -181,7 +194,7 @@ describe('PATCH/api/activities/:activity_id', () => {
 
         );
         const res2 = await request(app)
-            .patch("/api/activities/6184fcbb983679de00436394")
+            .patch("/api/activities/618ba59a7d740be5cf446ae7")
             .send({
                 distanceTravelled: 90,
                 metersClimbed: 2.86950537816285873,
@@ -203,7 +216,7 @@ describe('PATCH/api/activities/:activity_id', () => {
             .expect(200);
         expect(res2.body.updatedActivity).toMatchObject({
             username: "Shaggy Rogers",
-            date: "2021-09-10T23:00:00.000Z",
+            date: "2021-09-11T23:00:00.000Z",
             distanceTravelled: 90,
             metersClimbed: 2.86950537816285873,
             stepCount: 325,
@@ -224,9 +237,26 @@ describe('PATCH/api/activities/:activity_id', () => {
                 },
             ],
         });
+    }, 30000);
 
-        console.log(res.body.updatedActivity);
-        console.log(res2.body.updatedActivity);
-    }, 25000);
+    test.only("404: returns not found when passed an invalid activity_id", async () => {
+        const res = await request(app)
+            .patch("/api/activities/6184ea7fa9d68aa75788d05c")
+            .send({
+                distanceTravelled: 45,
+                metersClimbed: 1.36950537816285873,
+                stepCount: 123,
+                timeElapsed: 256000,
+                polylineArray: [
+                    {
+                        latitude: 53.814451536192024,
+                        longitude: -1.6649007540445564,
+                        timeStamp: 1635931709000.971,
+                    },
+                ],
+            })
+            .expect(404);
+        expect(res.body.msg).toBe("Not found.");
+    }, 20000);
 });
         
